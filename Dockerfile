@@ -24,7 +24,8 @@ RUN curl -sfL https://github.com/devcontainers-contrib/nanolayer/releases/downlo
             --option version="${AQTINSTALL}" && \
     rm /nanolayer
 
-RUN aqt install --outputdir /opt/qt ${QT} ${QT_HOST} ${QT_TARGET} ${QT_ARCH} -m ${QT_MODULES}
+RUN /bin/bash -c 'source /etc/profile && \
+aqt install --outputdir /opt/qt ${QT} ${QT_HOST} ${QT_TARGET} ${QT_ARCH} -m ${QT_MODULES}'
 
 ENV TZ=America/Los_Angeles
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
