@@ -24,6 +24,7 @@ RUN curl -sfL https://github.com/devcontainers-contrib/nanolayer/releases/downlo
             --option version="${AQTINSTALL}" && \
     rm /nanolayer
 
+RUN aqt install --outputdir /opt/qt ${QT} ${QT_HOST} ${QT_TARGET} ${QT_ARCH} -m ${QT_MODULES}
 
 ENV TZ=America/Los_Angeles
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
@@ -34,7 +35,6 @@ ENV PATH /opt/qt/${QT}/gcc_64/bin:$PATH
 ENV PYSIDE6_INSTALL_DIR "/home/vscode/pyside-setup/build/qfp-py${PYTHON}-qt${QT}-64bit-release/install"
 
 RUN /bin/bash -c 'source /etc/profile && \
-aqt install --outputdir /opt/qt ${QT} ${QT_HOST} ${QT_TARGET} ${QT_ARCH} -m ${QT_MODULES} && \
 cd $HOME && \
 git clone -b ${QT} https://code.qt.io/pyside/pyside-setup.git && \
 cd pyside-setup && \
