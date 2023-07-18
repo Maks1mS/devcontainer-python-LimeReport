@@ -25,9 +25,8 @@ RUN . /extra.sh && \
         ghcr.io/devcontainers-contrib/features/pipx-package:1 \
             --option package="aqtinstall" \
             --option version="${AQTINSTALL}" && \
-    rm /nanolayer
-
-RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 60 --slave /usr/bin/g++ g++ /usr/bin/g++-9
+    rm /nanolayer && \
+    switch_gcc_version
 
 RUN /bin/bash -c 'source /etc/profile && \
 aqt install --outputdir /opt/qt ${QT} ${QT_HOST} ${QT_TARGET} ${QT_ARCH} -m ${QT_MODULES}'
