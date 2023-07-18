@@ -10,7 +10,7 @@ packages_to_install() {
         ;;
     esac
 
-    echo -n ",gcc-$(get_g_version),g++$(get_g_version)"
+    echo -n ",gcc-$(get_g_version),g++-$(get_g_version)"
 }
 
 verlte() {
