@@ -1,4 +1,4 @@
-run: Build docker image
+name: Build docker image
 run-name: Build with Qt ${{ inputs.qt }} and Python ${{ inputs.python }} by @${{ github.actor }}
 
 # This workflow uses actions that are not certified by GitHub.
