@@ -1,0 +1,29 @@
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Request devcontainer for Qt ${{ matrix.qt }} and ${{ matrix.python }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - qt: 5.14.2
+            python: 3.7
+          - qt: 5.15.2
+            python: 3.9
+          - qt: 6.3.2
+            python: 3.9
+          - qt: 6.4.2
+            python: 3.9
+          - qt: 6.5.1
+            python: 3.9
+
+    - name: Invoke workflow with inputs
+      uses: benc-uk/workflow-dispatch@v1
+      with:
+        workflow: docker-publish.yml
+        inputs: '{ "qt": ${{ matrix.qt }}, "python": ${{ matrix.python }} }'
