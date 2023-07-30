@@ -22,8 +22,9 @@ jobs:
           - qt: 6.5.1
             python: 3.9
 
-    - name: Invoke workflow with inputs
-      uses: benc-uk/workflow-dispatch@v1
-      with:
-        workflow: docker-publish.yml
-        inputs: '{ "qt": ${{ matrix.qt }}, "python": ${{ matrix.python }} }'
+    steps:
+      - name: Invoke workflow with inputs
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: docker-publish.yml
+          inputs: '{ "qt": ${{ matrix.qt }}, "python": ${{ matrix.python }} }'
