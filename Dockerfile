@@ -43,6 +43,9 @@ cd $HOME && \
 git clone -b ${QT} https://code.qt.io/pyside/pyside-setup.git && \
 cd pyside-setup && \
 pip install -r requirements.txt && \
-python setup.py build --parallel $(nproc) --limited-api yes'
+python setup.py build --parallel $(nproc) bdist_wheel --limited-api yes && \
+pip install /home/vscode/pyside-setup/dist/*.whl'
 
 ENV PYSIDE_INSTALL_DIR="/home/vscode/pyside-setup/build/qfpa-py${PYTHON}-qt${QT}-64bit-release/install"
+
+USER root
